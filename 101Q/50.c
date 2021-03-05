@@ -17,6 +17,23 @@ int max () {
     return 0;
 }
 
+//2.
+int main () {
+    int x;
+    scanf ("%d", &x);
+
+    int total = 0, soma = 0, media=0;
+    while (x!= 0) {
+        scanf ("%d", &x);
+
+        soma += x;
+        total ++;
+    }
+    media = soma / total;
+    printf ("%d\n", media);
+    return 0;  
+}
+
 //4. -- 10 testes corretos
 int bitsUm (unsigned int n){
     int bitsUm=0;
