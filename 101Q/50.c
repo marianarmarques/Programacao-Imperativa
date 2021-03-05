@@ -17,7 +17,7 @@ int max () {
     return 0;
 }
 
-//2.
+//2. -- certo
 int media () {
     int x;
     scanf ("%d", &x);
