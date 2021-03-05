@@ -18,7 +18,7 @@ int max () {
 }
 
 //2.
-int main () {
+int media () {
     int x;
     scanf ("%d", &x);
 
