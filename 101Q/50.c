@@ -204,3 +204,23 @@ int contaVogais (char s[]) {
     }
     return acc;
 }
+
+//24 -- 10 testes corretos
+int remRep (char x[]) {
+    int i, j=0;
+
+    for (i=0; x[i]!='\0'; i++) {
+        if (x[i]==x[i+1]) {
+
+            j=i;
+            i--;
+            for (; x[j]!='\0'; j++) x[j]=x[j+1];
+        }  
+    }
+    return (i); 
+}
+
+// Testar;
+int main () {
+    printf ("Hello World!\n");
+}
