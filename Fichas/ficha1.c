@@ -89,7 +89,7 @@ int main () {
     ex1(5);
     ex2(5);
     triangulo1 (5);
-    triangulo2 (10);
+    triangulo2 (5);
     return 0;
 }
 
