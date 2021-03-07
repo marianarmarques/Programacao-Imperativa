@@ -205,6 +205,20 @@ int contaVogais (char s[]) {
     return acc;
 }
 
+//22
+int contida (char a[], char b[]) {
+    int i, j, acc=0, length=0;
+
+    
+    for (i=0; a[i]!='\0'; i++, length++) {
+        for (j=0; b[j]!='\0'; j++) {
+            if (a[i]==b[j]) break;
+        }
+        if (!b[j]) return 0;
+    }
+    return 1;
+}
+
 //24 -- 10 testes corretos
 int remRep (char x[]) {
     int i, j=0;
