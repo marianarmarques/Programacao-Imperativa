@@ -205,7 +205,7 @@ int contaVogais (char s[]) {
     return acc;
 }
 
-//22
+//22 -- 10 testes corretos
 int contida (char a[], char b[]) {
     int i, j, acc=0, length=0;
 
