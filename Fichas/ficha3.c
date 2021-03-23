@@ -89,15 +89,15 @@ int main () {
     visto que, vários exercícios se referem ao mesmo vetor e as mudanças vão sendo 
     feitas.*/
     
-    int v [5] = {1,2,3,4,5};
-    int q [5];
-
     // 2
     int x = 3, y = 5;
     swapM (&x, &y);
 
     printf ("%d %d\n", x, y);
 
+    
+    int v [5] = {1,2,3,4,5};
+    int q [5];
     // 3
     swap(v,0,3);
 
