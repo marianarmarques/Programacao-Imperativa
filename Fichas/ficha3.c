@@ -5,14 +5,11 @@
 Como declaramos apontadores.:
 (type) * p;
 
-Caso o apontador não tenha '*' temos que lhe indicar o "caminho", isto é,
-o endereço de memória da var, dado por &.
 > Atribuir valor ao apontador <
 p = &var; 
 
 > Aceder ao valor que o apontador está a apontar <
 *p = var; 
-
 */
 
 // 2
@@ -99,9 +96,6 @@ long fatorial (int n) {
 
 
 int main () {
-    /* Para testar um exercício é necessário meter em comentário os outros,
-    visto que, vários exercícios se referem ao mesmo vetor e as mudanças vão 
-    sendo feitas.*/
     
     // 2
     printf("2) ");
@@ -114,7 +108,7 @@ int main () {
     int v2 [5] = {6,7,8,9,10};
     int v3 [5] = {11,12,13,14,15};
     int q [5];
-    
+
     // 3
     printf("3) ");
     swap(v1,1,3);
@@ -125,7 +119,6 @@ int main () {
     printf("\n");
 
     // 4
-    
     int s1 = soma(v1,5);
     int s2 = soma(v2,5);
     int s3 = soma(v3,5);
@@ -149,10 +142,10 @@ int main () {
     printf("\n");
 
     // 6
-    int max;
-    int max1 = maximum(v1,5,&max);
-    int max2 = maximum(v2,5,&max);
-    int max3 = maximum(v3,5,&max);
+    int *max;
+    int max1 = maximum(v1,5,max);
+    int max2 = maximum(v2,5,max);
+    int max3 = maximum(v3,5,max);
 
     printf("6) v1: %d, v2: %d, v3: %d \n", max1, max2, max3);
     
