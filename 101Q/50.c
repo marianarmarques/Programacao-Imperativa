@@ -34,6 +34,8 @@ int media () {
     return 0;  
 }
 
+//3.
+
 //4. -- 10 testes corretos
 int bitsUm (unsigned int n){
     int bitsUm=0;
@@ -46,6 +48,8 @@ int bitsUm (unsigned int n){
     }
     return bitsUm;
 }
+
+//5.
 
 //6. -- 10 testes corretos
 int qDig (unsigned int n) {
@@ -125,6 +129,7 @@ void strnoV (char t[]){
     }
 }
 
+//13.
 
 //14. -- 10 testes corretos
 char charMaisfreq (char s[]) {
@@ -156,6 +161,8 @@ int iguaisConsecutivos (char s[]) {
     }
     return max;
 }
+
+//16.
 
 //17 -- 10 testes corretos
 int maiorPrefixo (char s1 [], char s2 []) {
@@ -194,6 +201,8 @@ int sufPref (char s1[], char s2[]) {
     return comprimento;
 }
 
+//20.
+
 //21 -- 10 testes corretos
 int contaVogais (char s[]) {
     int i, acc=0;
@@ -219,6 +228,8 @@ int contida (char a[], char b[]) {
     return 1;
 }
 
+//23.
+
 //24 -- 10 testes corretos
 int remRep (char x[]) {
     int i, j=0;
@@ -234,7 +245,60 @@ int remRep (char x[]) {
     return (i); 
 }
 
-// Testar;
+//25.
+
+//26.
+
+//27.
+
+//28.
+
+//29.
+
+//30.
+
+//31.
+
+//32.
+
+//33.
+
+//34.
+
+//35.
+
+//36.
+
+//37.
+
+//38.
+
+//39.
+
+//40.
+
+//41.
+
+//42.
+
+//43.
+
+//44.
+
+//45.
+
+//46.
+
+//47.
+
+//48.
+
+//49.
+
+//50.
+
+
+
 int main () {
-    printf ("Hello World!\n");
+    return 0;
 }
