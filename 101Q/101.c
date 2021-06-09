@@ -140,13 +140,14 @@ int removeAll (LInt *l, int x) {
 int removeDups (LInt *l) {
     LInt *l1,*l2;
     for (l1 = l; *l1; l1 = &((*l1)->prox)) {
-        //ou removeAll ((*l1)->prox, (*l1)->valor);
+
         for (l2 = &((*l1)->prox); *l2; ) {
             
             if ((*l2)->valor == (*l1)->valor)
                 *l2 = (*l2)->prox;
             else l2 = &((*l2)->prox);
         }
+        //ou removeAll ((*l1)->prox, (*l1)->valor);
     }
 }
 
