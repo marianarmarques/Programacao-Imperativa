@@ -247,13 +247,48 @@ int remRep (char x[]) {
 
 //25.
 
-//26.
+//26. -- 10 testes corretos
+void insere (int s[], int N, int x) {
+    int i, j;
+    
+    for (i=0; i<N; i++) {
+        if (s[i]>x) {
+            for (j=N; j>i; j--) s[j] = s[j-1];
+            s[j]=x;
+            break;
+        }
+    }
+}
 
 //27.
 
-//28.
+//28. -- 10 testes corretos
+int crescente (int a[], int i, int j){
+       
+    for(; i<j; i++) {
+        if (a[i] > a[i+1]) return 0;
+    }
+    return 1;
+}
 
-//29.
+//29. -- 10 testes corretos
+int retiraNeg (int v[], int N){
+    int i, ind=0, count=0;
+    
+    for (i=0; i<N;) {
+        if (v[i]<0) {
+            N--;
+            for (ind=i; ind<N; ind++) {
+                v[ind]=v[ind+1];
+            }
+        }
+        else {
+            count++;
+            i++;
+        }
+    }
+    return count;
+}
 
 //30.
 
@@ -261,23 +296,80 @@ int remRep (char x[]) {
 
 //32.
 
-//33.
+//33. -- 10 testes corretos
+int elimRep (int v[], int N) {
+       int i, j, ind=0, count = 0;
+       
+       for (i=0; i<N; i++) {
+           for (j=i+1; j<N;) {
+               if (v[i]==v[j]) {
+                   N--;
+                   for(ind=j; ind<N; ind++) v[ind] = v[ind+1];
+               }
+               else j++;
+           }
+       }
+       for(i=0; i<N; i++) count++;
+       return count;
+   }
 
 //34.
 
 //35.
 
-//36.
+//36. -- 10 testes corretos
+int comuns (int a[], int na, int b[], int nb){
+      int i, j, count=0;
+      
+      for (i=0; i<na; i++) {
+          for (j=0; j<nb; j++) {
+              if (a[i]==b[j]) {
+                  count++;
+                  break;
+              }
+          }
+      }
+      return count;
+   }
 
-//37.
+//37. -- 10 testes corretos
+int minInd (int v[], int n) {
+   int i, menorInd=0, menorValor=v[0];
+   
+   for(i=0; i<n; i++) {
+       if(v[i]<menorValor) {
+           menorValor = v[i];
+           menorInd = i;
+       }
+   }
+   return menorInd;
+}
 
-//38.
+//38. -- 10 testes corretos
+void somasAc (int v[], int Ac [], int N){
+   int i, ac, soma=0;
+   
+   for(ac=0; ac<N; ac++) {
+       for (i=0; i<=ac; i++) soma+=v[i];
+       Ac[ac] = soma;
+       soma=0;
+   }
+}
 
 //39.
 
 //40.
 
-//41.
+//41. -- 10 testes corretos
+void addTo(int N, int M, int a [N][M], int b[N][M]) {
+    int n, m;
+    
+    for(n=0; n<N; n++) {
+        for(m=0; m<M; m++) {
+            a[n][m] += b[n][m];
+        }
+    }
+}
 
 //42.
 
