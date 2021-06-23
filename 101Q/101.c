@@ -543,7 +543,13 @@ int contaFolhas (ABin a) {
     return folhas;
 }
 
-//43.
+//43. -- 10 testes corretos
+ABin cloneMirror (ABin a) {
+    if (!a) return NULL;
+    
+    ABin new =  newABin (a->valor, cloneMirror(a->dir), cloneMirror(a->esq));
+    return new;
+}
 
 //44. -- 10 testes corretos
 /* Árvore binária de procura: todos os elementos à direita da raiz são maires
@@ -570,7 +576,7 @@ int lookupAB (ABin a, int x) {
         if(x == a->valor) return 1;
         if(x > a->valor) return lookupAB(a->dir, x);
         else return lookupAB(a->esq, x);
-    };
+    }
     return 0;
 }
 
