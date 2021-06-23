@@ -124,6 +124,18 @@ int removeOneOrd (LInt *l, int x) {
 }
 
 //7.
+void merge (LInt *r, LInt a, LInt b){
+    *r = NULL;
+    LInt l1;
+
+    for (l1 = a; l1; l1 = l1->prox){
+        appendL (r,l1->valor);
+    }
+    for (l1 = b; l1; l1 = l1->prox){
+        insertOrd (r,l1->valor);
+    }
+}
+
 //8.
 //9.
 
@@ -186,13 +198,13 @@ void init (LInt *l) {
 
 //14. -- 10 testes corretos
 void appendL (LInt *l, int x) {
-     LInt *curr;
+    LInt *curr;
     
+    for (curr = l; *curr; curr=&((*curr)->prox));
+
     LInt new = malloc(sizeof(struct lligada));
     new -> valor = x;
     new -> prox = NULL;
-    
-    for (curr = l; *curr; curr=&((*curr)->prox));
     *curr = new;
 }
 
@@ -256,9 +268,42 @@ int take (int n, LInt *l){
     return lim;
 }
 
-//20.
+//20. -- 10 testes corretos
+int drop (int n, LInt *l){
+    int tam = length(*l);
+    
+    if (tam<=n) {
+        while(*l) {
+            LInt temp = (*l)->prox;
+            free(*l);
+            *l = temp;
+        }
+        return tam;
+    }
+    
+    else {
+        int i=0;
+        
+        while(*l && i<n) {
+            LInt temp = (*l)->prox;
+            free(*l);
+            *l = temp;
+            
+            i++;
+        }
+        return n;
+    }
+}
 
-//21.
+//21. -- 10 testes corretos
+LInt NForward (LInt l, int N){
+    int i;
+    LInt *l1 = &l;
+    
+    for (i = 0; i < N && *l1; i++,l1 = &((*l1)->prox));
+    
+    return *l1;
+}
 
 //22. -- 10 testes corretos
 int listToArray (LInt l, int v[], int N){
@@ -271,9 +316,33 @@ int listToArray (LInt l, int v[], int N){
     return i;
 }
 
-//23.
+//23. -- 10 testes corretos
+LInt arrayToList (int v[], int N){
+    int i;
+    LInt l=NULL;
+    
+    for(i=N-1; i>=0; i--) {
+        l = newLInt(v[i], l);
+    }
+    return l;
+}
 
-//24.
+//24. -- 10 testes corretos
+LInt somasAcL (LInt l) {
+    if(l){   
+        int soma=0;
+        LInt *l1;
+        LInt result=NULL;
+        
+        for(l1=&l; *l1; l1=&((*l1)->prox)){
+            soma += (*l1)->valor;
+            appendL(&result, soma);
+        }
+        return result;
+        
+    } 
+    return NULL;
+}
 
 //25.
 
@@ -325,7 +394,7 @@ ABin newABin (int r, ABin e, ABin d){
 	return new;
 }
 
-//28. -- 10 testes corretos
+//28. -- 10 testes corretos22.  Defina  uma  fun ̧c ̃aoint listToArray (LInt l, int v[], int N)que,  dada  uma  listal,preenche o arrayvcom os elementos da lista.A fun ̧c ̃ao dever ́a preencher no m ́aximoNelementos e retornar o n ́umero de elementos preenchi-dos.  (https://codeboard.io/projects/16261)23.  Defina  uma  fun ̧c ̃aoLInt arrayToList (int v[], int N)que  constr ́oi  uma  lista  com  oselementos de um array, pela mesma ordem em que aparecem no array..  (https://codeboard.io/projects/16262)24.  Defina uma fun ̧c ̃aoLInt somasAcL (LInt l)que, dada uma lista de inteiros, constr ́oi umanova lista de inteiros contendo as somas acumuladas da lista original (que dever ́a permanecerinalterada).Por  exemplo,  se  a  listaltiver  os  valores[1,2,3,4]a  lista  contru ́ıda  pela  invoca ̧c ̃ao  desomasAcL (l)dever ́a  conter  os  valores[1,3,6,10].   (https://codeboard.io/projects/16263)25.  Defina uma fun ̧c ̃aovoid remreps (LInt l)que, dada uma lista ordenada de inteiros, eliminadessa lista todos os valores repetidos assegurando que o espa ̧co de mem ́oria correspondenteaos n ́os removidos  ́e correctamente libertado.  (https://codeboard.io/projects/16264)26.  Defina uma fun ̧c ̃aoLInt rotateL (LInt l)que coloca o primeiro elemento de uma lista nofim.  Se a lista for vazia ou tiver apenas um elemento, a fun ̧c ̃ao n ̃ao tem qualquer efeito pr ́atico(i.e., devolve a mesma lista que recebe como argumento).Note que a sua fun ̧c ̃ao n ̃ao deve alocar nem libertar mem ́oria.  Apenas re-organizar as c ́elulasda lista.  (https:/
 int altura (ABin a){
     int altEsq, altDir, alt=0;
     
@@ -385,11 +454,39 @@ void inorder (ABin a, LInt * l) {
     }
 }
 
-//32.
+//32. -- 10 testes corretos
+void preorder (ABin a, LInt * l) {
+    if (a) {
+        LInt new = malloc(sizeof(struct nodo));
+        new->valor = a->valor;
+        new->prox = NULL;
+        
+        *l=new;
+        preorder(a->esq, &((*l)->prox));
+        
+        for(; *l; l=&((*l)->prox));
+        preorder(a->dir, l);
+         
+    }
+    else *l=NULL;
+}
 
 //33.
 
-//34. 
+//34. -- 10 testes corretos
+int depth (ABin a, int x) {
+    if(!a) return -1;
+    
+    if(a->valor==x) return 1;
+    int dir = depth(a->dir, x);
+    int esq = depth(a->esq, x);
+    
+    if(dir==-1 && esq==-1) return -1;
+    if(dir==-1) return 1+esq;
+    if(esq==-1) return 1+dir;
+    
+    return 1+dir>1+esq ? 1+esq : 1+dir;
+}
 
 //35. -- 10 testes corretos
 int freeAB (ABin a) {
@@ -420,6 +517,18 @@ int iguaisAB (ABin a, ABin b) {
 //39.
 
 //40.
+int dumpAbin (ABin a, int v[], int N) {
+   int i;
+   LInt l = NULL, *l1;
+   
+   inorder(a, &l);
+
+   
+   for(l1 = &l, i=0;*l1 && i<N; l1=&((*l1)->prox), i++) {
+       v[i] = (*l1)->valor;
+   }
+   return i;
+}
 
 //41.
 
@@ -464,6 +573,7 @@ int lookupAB (ABin a, int x) {
     };
     return 0;
 }
+
 //46.
 
 //47. -- 10 testes corretos
@@ -472,13 +582,31 @@ int maiorAB (ABin a) {
     return maiorAB(a->dir);
 }
 
-//48.
+//48. -- 10 testes corretos
+void removeMaiorA (ABin *a) {
+    if(*a) {
+        if (!(*a)->dir) (*a)=(*a)->esq;
+        else removeMaiorA(&(*a)->dir);
+    }
+}
 
-//49.
+//49. -- 10 testes corretos
+int quantosMaiores (ABin a, int x) {
+    if (a) {
+        if (a->valor>x) return 1 + quantosMaiores(a->esq, x) + quantosMaiores(a->dir, x);
+        else quantosMaiores(a->dir, x);
+    }
+    else return 0;
+}
 
 //50.
+
+//51.
 
 
 int main() {
     return 0;
 }
+
+
+
