@@ -1,11 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-Notas: Nos casos de enserir elementos, não esquecer os casos em que a lista é vazia;
-       Confirmar antes de aceder a um pointer se ele é vazio ou não;
-*/
-
 /************************LISTAS LIGADAS************************/
 typedef struct lligada {
 	int valor;
@@ -123,8 +118,9 @@ int removeOneOrd (LInt *l, int x) {
     return 1;
 }
 
-//7.
-void merge (LInt *r, LInt a, LInt b){
+//7. -- 10 testes corretos
+/*Com alocação de memória*/
+void merge1 (LInt *r, LInt a, LInt b){
     *r = NULL;
     LInt l1;
 
@@ -135,8 +131,36 @@ void merge (LInt *r, LInt a, LInt b){
         insertOrd (r,l1->valor);
     }
 }
+/*Sem alocação de memória*/
+void merge2 (LInt *r, LInt a, LInt b) {
+    LInt *curr = r;
 
-//8.
+    while(a || b) {
+        if (!b || (a && a->valor < b->valor)) {
+            *curr=a;
+            a=a->prox;
+        }
+        else {
+            *curr=b;
+            b=b->prox;
+        }
+        curr = &((*curr)->prox);
+    }
+}
+
+//8. -- 10 testes corretos
+void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
+    if(l) {
+        int i;
+        LInt l1;
+        
+        for(l1=l; l1; l1=l1->prox) {
+            if (l1->valor<x) appendL(mx, l1->valor);
+            else appendL(Mx, l1->valor);
+        }
+    }
+}
+
 //9.
 
 //10. -- 10 testes corretos
@@ -394,7 +418,7 @@ ABin newABin (int r, ABin e, ABin d){
 	return new;
 }
 
-//28. -- 10 testes corretos22.  Defina  uma  fun ̧c ̃aoint listToArray (LInt l, int v[], int N)que,  dada  uma  listal,preenche o arrayvcom os elementos da lista.A fun ̧c ̃ao dever ́a preencher no m ́aximoNelementos e retornar o n ́umero de elementos preenchi-dos.  (https://codeboard.io/projects/16261)23.  Defina  uma  fun ̧c ̃aoLInt arrayToList (int v[], int N)que  constr ́oi  uma  lista  com  oselementos de um array, pela mesma ordem em que aparecem no array..  (https://codeboard.io/projects/16262)24.  Defina uma fun ̧c ̃aoLInt somasAcL (LInt l)que, dada uma lista de inteiros, constr ́oi umanova lista de inteiros contendo as somas acumuladas da lista original (que dever ́a permanecerinalterada).Por  exemplo,  se  a  listaltiver  os  valores[1,2,3,4]a  lista  contru ́ıda  pela  invoca ̧c ̃ao  desomasAcL (l)dever ́a  conter  os  valores[1,3,6,10].   (https://codeboard.io/projects/16263)25.  Defina uma fun ̧c ̃aovoid remreps (LInt l)que, dada uma lista ordenada de inteiros, eliminadessa lista todos os valores repetidos assegurando que o espa ̧co de mem ́oria correspondenteaos n ́os removidos  ́e correctamente libertado.  (https://codeboard.io/projects/16264)26.  Defina uma fun ̧c ̃aoLInt rotateL (LInt l)que coloca o primeiro elemento de uma lista nofim.  Se a lista for vazia ou tiver apenas um elemento, a fun ̧c ̃ao n ̃ao tem qualquer efeito pr ́atico(i.e., devolve a mesma lista que recebe como argumento).Note que a sua fun ̧c ̃ao n ̃ao deve alocar nem libertar mem ́oria.  Apenas re-organizar as c ́elulasda lista.  (https:/
+//28. -- 10 testes corretos
 int altura (ABin a){
     int altEsq, altDir, alt=0;
     

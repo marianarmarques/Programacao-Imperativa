@@ -36,6 +36,7 @@ int media () {
 
 //3.
 
+
 //4. -- 10 testes corretos
 int bitsUm (unsigned int n){
     int bitsUm=0;
@@ -201,7 +202,18 @@ int sufPref (char s1[], char s2[]) {
     return comprimento;
 }
 
-//20.
+//20. -- 10 testes corretos
+int contaPal (char s[]){
+    int i, pal = 0, numPal = 0; 
+    for (i = 0; s[i]; i++){
+        if (s[i] != ' ' && s[i] != '\n' && s[i] != '\t'){
+            if (!pal) numPal++;
+            pal = 1;
+        }
+        else pal = 0;
+    }
+    return numPal;
+}
 
 //21 -- 10 testes corretos
 int contaVogais (char s[]) {
