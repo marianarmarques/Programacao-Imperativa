@@ -312,7 +312,7 @@ int take (int n, LInt *l) {
 }
 
 //20. -- 10 testes corretos
-int drop (int n, LInt *l){
+int drop (int n, LInt *l) { 
     int tam = length(*l);
     
     if (tam<=n) {
@@ -339,7 +339,7 @@ int drop (int n, LInt *l){
 }
 
 //21. -- 10 testes corretos
-LInt NForward (LInt l, int N){
+LInt NForward (LInt l, int N) {
     int i;
     LInt *l1 = &l;
     
@@ -349,7 +349,7 @@ LInt NForward (LInt l, int N){
 }
 
 //22. -- 10 testes corretos
-int listToArray (LInt l, int v[], int N){
+int listToArray (LInt l, int v[], int N) {
     int i;
     LInt curr;
     
@@ -360,7 +360,7 @@ int listToArray (LInt l, int v[], int N){
 }
 
 //23. -- 10 testes corretos
-LInt arrayToList (int v[], int N){
+LInt arrayToList (int v[], int N) {
     int i;
     LInt l=NULL;
     
@@ -377,7 +377,7 @@ LInt somasAcL (LInt l) {
         LInt *l1;
         LInt result=NULL;
         
-        for(l1=&l; *l1; l1=&((*l1)->prox)){
+        for(l1=&l; *l1; l1=&((*l1)->prox)) {
             soma += (*l1)->valor;
             appendL(&result, soma);
         }
@@ -417,7 +417,7 @@ LInt rotateL (LInt l) {
 }
 
 //27. -- 10 testes corretos
-LInt parte (LInt l){
+LInt parte (LInt l) {
     int conta=1;
     
     if (l) {
@@ -451,7 +451,7 @@ typedef struct nodo {
 } *ABin;
 
 /*Função auxiliar*/
-ABin newABin (int r, ABin e, ABin d){
+ABin newABin (int r, ABin e, ABin d) {
 	ABin new = (ABin) malloc (sizeof (struct nodo));
 
 	if (new!=NULL){
@@ -463,7 +463,7 @@ ABin newABin (int r, ABin e, ABin d){
 }
 
 //28. -- 10 testes corretos
-int altura (ABin a){
+int altura (ABin a) {
     int altEsq, altDir, alt=0;
     
     if (a!=NULL) {
