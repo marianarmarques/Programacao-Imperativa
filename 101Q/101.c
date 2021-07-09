@@ -120,10 +120,10 @@ void merge1 (LInt *r, LInt a, LInt b) {
     *r = NULL;
     LInt l1;
 
-    for (l1 = a; l1; l1 = l1->prox){
+    for (l1 = a; l1; l1 = l1->prox) {
         appendL (r,l1->valor);
     }
-    for (l1 = b; l1; l1 = l1->prox){
+    for (l1 = b; l1; l1 = l1->prox) {
         insertOrd (r,l1->valor);
     }
 }
@@ -292,7 +292,7 @@ int maximo (LInt l) {
 }
 
 //19. -- 10 testes corretos
-int take (int n, LInt *l){
+int take (int n, LInt *l) {
     int length=0;
     int lim = 0;
     LInt *curr;
