@@ -179,8 +179,29 @@ void splitQS (LInt l, int x, LInt *mx, LInt *Mx) {
     }
 }
 
-//9.
+//9. -- 10 testes corretos
+LInt parteAmeio (LInt *x) {
+    int meio=0, i=0;
+    LInt *y, *y_head;
 
+    y=malloc(sizeof(struct lligada *));
+    *y=NULL;
+
+    y_head=y;
+
+    if(!(*x)->prox) return NULL;
+    else {
+        meio = length(*x)/2;
+
+        for(i=0; i<meio; i++) {
+            *y=*x;
+            *x=(*x)->prox;
+            y=&((*y)->prox);
+        }
+        (*y) = NULL;
+    }
+    return *y_head;
+}
 
 //10. -- 10 testes corretos
 int removeAll (LInt *l, int x) {
@@ -387,6 +408,7 @@ LInt somasAcL (LInt l) {
     return NULL;
 }
 
+
 //25. -- 10 testes corretos
 void remreps (LInt l) {
     if(!l || !l->prox) return;
@@ -403,9 +425,9 @@ void remreps (LInt l) {
     }
 }
 
-//26.
+//26. -- 10 casos c
 LInt rotateL (LInt l) {
-    if (!l || !l->prox)return l;
+    if (!l || !l->prox) return l;
 
     LInt *l1, newHead = l->prox;
 
