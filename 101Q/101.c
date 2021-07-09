@@ -8,7 +8,7 @@ typedef struct lligada {
 } *LInt;
 
 /*Função auxiliar*/
-LInt newLInt (int x, LInt l){
+LInt newLInt (int x, LInt l) {
     LInt new = (LInt) malloc (sizeof (struct lligada));
     
     if (new!=NULL) {
@@ -21,13 +21,9 @@ LInt newLInt (int x, LInt l){
 //1. -- 10 testes corretos
 int length (LInt l) {
     int tam=0;
-    
-    if (l) {
-        while(l) {
-            tam++;
-            l=l->prox;
-        }
-    }
+
+    while(l) {tam++; l=l->prox;}
+
     return tam;
 }
 
@@ -63,17 +59,17 @@ void imprimeL (LInt l) {
 
 //4. -- 10 testes corretos
 LInt reverseL (LInt l) {
-    LInt prev = NULL, // A posição anterior tem de começar a NULL pois o último elemento da lista aponta para NULL, considerando que a lista vai ser invertida.
+    LInt ant = NULL, // A posição anterior tem de começar a NULL pois o último elemento da lista aponta para NULL, considerando que a lista vai ser invertida.
          next = NULL, 
          curr = l;
          
     while (curr) {
         next = curr->prox;
-        curr -> prox = prev;
-        prev = curr;
+        curr -> prox = ant;
+        ant = curr;
         curr = next;
     }
-    return prev;
+    return ant;
 }
 
 //5. -- 10 testes corretos
@@ -83,8 +79,8 @@ void insertOrd (LInt *l, int x) {
     
     // Empty linked list or insert in the first place
 	if(*l==NULL || (*l)->valor > x) {
-		new->prox = *l;
-		*l=new;
+		new->prox = *l; 
+		*l=new; // Indicar à lista a nova cabeça da lista;
 	}
 	
 	LInt curr,
@@ -120,7 +116,7 @@ int removeOneOrd (LInt *l, int x) {
 
 //7. -- 10 testes corretos
 /*Com alocação de memória*/
-void merge1 (LInt *r, LInt a, LInt b){
+void merge1 (LInt *r, LInt a, LInt b) {
     *r = NULL;
     LInt l1;
 
@@ -131,6 +127,7 @@ void merge1 (LInt *r, LInt a, LInt b){
         insertOrd (r,l1->valor);
     }
 }
+
 /*Sem alocação de memória*/
 void merge2 (LInt *r, LInt a, LInt b) {
     LInt *curr = r;
@@ -149,7 +146,8 @@ void merge2 (LInt *r, LInt a, LInt b) {
 }
 
 //8. -- 10 testes corretos
-void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
+/*Com alocação de memória*/
+void splitQS (LInt l, int x, LInt *mx, LInt *Mx) {
     if(l) {
         int i;
         LInt l1;
@@ -161,7 +159,28 @@ void splitQS (LInt l, int x, LInt *mx, LInt *Mx){
     }
 }
 
+/*Sem alocação de memória*/
+void splitQS (LInt l, int x, LInt *mx, LInt *Mx) {
+    LInt l1 = l;
+    LInt *mx_curr = mx, *Mx_curr = Mx;
+
+    while(l1) {
+        LInt temp = l1;
+        if(l1->valor < x) {
+            *mx_curr = temp;
+            mx_curr=&((*mx_curr)->prox);
+        }
+        else {
+            *Mx_curr = temp;
+            Mx_curr=&((*Mx_curr)->prox);
+        }
+        l1=l1->prox;
+        temp->prox = NULL;
+    }
+}
+
 //9.
+
 
 //10. -- 10 testes corretos
 int removeAll (LInt *l, int x) {
@@ -217,7 +236,7 @@ void init (LInt *l) {
     
     for(curr=l; (*curr)->prox; curr=&((*curr)->prox));
     
-    (*curr)=(*curr)->prox; 
+    *curr=NULL; //Libertar o espaço.
 }
 
 //14. -- 10 testes corretos
@@ -304,7 +323,7 @@ int drop (int n, LInt *l){
         }
         return tam;
     }
-    
+
     else {
         int i=0;
         
@@ -368,9 +387,34 @@ LInt somasAcL (LInt l) {
     return NULL;
 }
 
-//25.
+//25. -- 10 testes corretos
+void remreps (LInt l) {
+    if(!l || !l->prox) return;
+    
+    LInt ant = l;
+    LInt l1;
+    
+    for(l1 = l->prox; l1; l1=l1->prox) {
+        if(l1->valor==ant->valor) {
+            ant->prox=l1->prox;
+            free(l1);
+        }
+        else ant=l1;
+    }
+}
 
 //26.
+LInt rotateL (LInt l) {
+    if (!l || !l->prox)return l;
+
+    LInt *l1, newHead = l->prox;
+
+    for (l1 = &l; *l1; l1 = &((*l1)->prox));
+    l->prox = NULL;
+    *l1 = l;
+
+    return newHead;
+}
 
 //27. -- 10 testes corretos
 LInt parte (LInt l){
