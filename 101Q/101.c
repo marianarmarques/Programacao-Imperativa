@@ -371,12 +371,11 @@ LInt NForward (LInt l, int N) {
 
 //22. -- 10 testes corretos
 int listToArray (LInt l, int v[], int N) {
-    int i;
-    LInt curr;
     
-    for (i=0, curr=l; i<N && curr; i++, curr=curr->prox) {
-        v[i] = curr->valor;
-    }
+    int i;
+    
+    for(i=0; i<N && l; i++, l=l->prox) v[i] = l->valor;
+
     return i;
 }
 

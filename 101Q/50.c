@@ -257,7 +257,20 @@ int remRep (char x[]) {
     return (i); 
 }
 
-//25.
+//25. -- 10 testes corretos
+int limpaEspacos (char texto[]) {
+    int i, j;
+    
+    for(i=0; texto[i];) {
+        if(isspace(texto[i]) && isspace(texto[i+1])) {
+            for(j=i; texto[j]; j++) {
+                texto[j]=texto[j+1];
+            }
+        }
+        else i++;
+    }
+    return i;
+}
 
 //26. -- 10 testes corretos
 void insere (int s[], int N, int x) {
