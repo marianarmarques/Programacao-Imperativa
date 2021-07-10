@@ -298,21 +298,18 @@ int crescente (int a[], int i, int j){
 
 //29. -- 10 testes corretos
 int retiraNeg (int v[], int N){
-    int i, ind=0, count=0;
+    int i, j;
     
-    for (i=0; i<N;) {
-        if (v[i]<0) {
-            N--;
-            for (ind=i; ind<N; ind++) {
-                v[ind]=v[ind+1];
+    for(i=0; i<N;) {
+        if(v[i]<0) {
+            N--; 
+            for(j=i; j<N; j++) {
+                v[j]=v[j+1];
             }
         }
-        else {
-            count++;
-            i++;
-        }
+        else i++;
     }
-    return count;
+    return i;
 }
 
 //30.
