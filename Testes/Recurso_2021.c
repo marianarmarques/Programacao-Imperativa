@@ -24,8 +24,7 @@ int paresImpares(int v[], int N) {
                     temp=v[i];
                     v[i]=v[j];
                     v[j]= temp;
-
-                    pares++;
+                    
                     break;
                 }
             }
@@ -65,6 +64,25 @@ void latino(int N,int m[N][N]) {
 }
 
 //Ex4.
+ABin next(ABin a){
+	ABin r = NULL;
+	if(a){
+		if(a->dir){ 
+			a = a->dir;
+			while(a->esq) a = a->esq;
+			r = a;
+		}
+		else if (a->pai && (a->pai)->esq == a) r = a->pai;
+		else if (a->pai && (a->pai)->dir == a){
+			while(a && a->pai && (a->pai)->dir == a){
+				a = a->pai;
+			}
+			if(a && a->pai) r = a->pai;
+		}
+	}
+
+	return r;
+}
 
 //Ex5.
 typedef struct palavras{
@@ -120,8 +138,6 @@ int acrescentaPal(Palavras *p, char *pal) {
     return (*p)->nOcorr;
 }
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////
 
 /*Funções auxiliares*/
@@ -164,7 +180,7 @@ int main() {
 
     merge(&r, a, b);
 
-    printf("Ex_3: \n");
+    printf("Ex_2: \n");
     for(LInt *curr=&r; *curr; curr=&((*curr)->prox)) printf("%d ", (*curr)->valor);
     printf("\n\n");
 
@@ -173,17 +189,32 @@ int main() {
 
     latino(3, matriz);
 
-    printf("Ex_2: \n");
+    printf("Ex_3: \n");
     for(int i=0; i<3; i++) {
         for(int j=0; j<3; j++) {
             printf("%d ", matriz[i][j]);
         }
         printf("\n");
     }
+    printf("\n");
 
     /* ----- EX4 ----- */
+    ABin tree, res;
+	tree = malloc(sizeof(struct nodo));
+	tree->valor = 5;
+	tree->pai = NULL;
+	tree->esq = malloc(sizeof(struct nodo));
+	tree->dir = malloc(sizeof(struct nodo));
+	(tree->esq)->valor = 3;
+	(tree->dir)->valor = 7;
+	(tree->esq)->pai = tree;
+	(tree->dir)->pai = tree;
+	(tree->esq)->dir = malloc(sizeof(struct nodo));
+	((tree->esq)->dir)->valor = 4;
+	((tree->esq)->dir)->pai = tree->esq;
 
-
+	res = next(tree->esq);
+	printf("Ex_4: Next element > %d\n\n", res->valor);
 
     /* ----- EX5 ----- */
     Palavras raiz;
