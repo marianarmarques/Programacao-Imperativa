@@ -91,20 +91,6 @@ typedef struct palavras{
     struct palavras *esq, *dir;
 } *Palavras;
 
-void rodaDir (Palavras *a){
-	Palavras b = (*a)->esq;
-	(*a)->esq = b->dir;
-	b->dir = *a;
-	*a = b;
-}
-
-void rodaEsq (Palavras *a){
-	Palavras b = (*a)->dir;
-	(*a)->dir = b->esq;
-	b->esq = (*a);
-	*a = b;
-}
-
 int acrescentaPal(Palavras *p, char *pal) {
     Palavras *ant = malloc(sizeof(struct palavra *));
     *ant = NULL;

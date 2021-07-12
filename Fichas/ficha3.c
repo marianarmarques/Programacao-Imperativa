@@ -12,7 +12,7 @@ p = &var;
 *p = var; 
 */
 
-// 2
+// 2.
 void swapM (int *x, int *y) {
     int temp;
 
@@ -22,7 +22,7 @@ void swapM (int *x, int *y) {
 }
 
 
-// 3
+// 3.
 void swap (int v[], int i, int j) {
     int temp;
 
@@ -31,7 +31,7 @@ void swap (int v[], int i, int j) {
     v[j] = temp;
 }
 
-// 4
+// 4.
 int soma (int v[], int N) {
     int soma=0;
     
@@ -41,7 +41,7 @@ int soma (int v[], int N) {
     return soma;
 }
 
-// 5
+// 5.
 void inverteArray1 (int v[], int N) {
     
     for (int i=0, j=N-1; i<j; i++, j--) {
@@ -57,8 +57,7 @@ void inverteArray2 (int v[], int N) {
     }
 }
 
-// 6
-
+// 6.
 int maximum (int v[], int N, int *m) {
     *m = v[0];
 
@@ -70,7 +69,7 @@ int maximum (int v[], int N, int *m) {
     return *m;
 }
 
-// 7
+// 7.
 void quadrados (int q[], int N) {
     
     for (int i=0; i<N; i++) {
@@ -79,8 +78,7 @@ void quadrados (int q[], int N) {
     
 }
 
-// 8 
-
+// 8.a)
 long fatorial (int n) {
     long fatorial;
 
@@ -90,7 +88,7 @@ long fatorial (int n) {
     return fatorial;
 }
 
-// 8
+// 8.b)
 /*Nota -> Linha N tem N elementos.*/
 
 

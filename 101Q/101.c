@@ -204,17 +204,18 @@ LInt parteAmeio (LInt *x) {
 }
 
 //10. -- 10 testes corretos
-int removeAll (LInt *l, int x) {
-    int ocorr=0;
+int removeAll (LInt *l, int x){
+    int numRemv=0;
+    LInt *curr;
     
-    LInt *l1;
-    for (l1=l; *l1;) {
-        if ((*l1)->valor==x) {
-            *l1=(*l1)->prox;
-            ocorr++;
+    for(curr=l; *curr;) {
+        if((*curr)->valor==x) {
+            numRemv++;
+            (*curr)=(*curr)->prox;
         }
-        else l1=&((*l1)->prox);
+        else curr=&((*curr)->prox);
     }
+    return numRemv;
 }
 
 //11. -- 10 teste corretos
@@ -380,7 +381,7 @@ int listToArray (LInt l, int v[], int N) {
 }
 
 //23. -- 10 testes corretos
-LInt arrayToList (int v[], int N) {
+LInt arrayToList1 (int v[], int N) {
     int i;
     LInt l=NULL;
     
@@ -388,6 +389,28 @@ LInt arrayToList (int v[], int N) {
         l = newLInt(v[i], l);
     }
     return l;
+}
+
+// Sem função auxiliar;
+
+LInt arrayToList2 (int v[], int N){
+    int i;
+    LInt *result = malloc(sizeof(struct lligada)), *head_result;
+    
+    *result=NULL;
+    head_result = result;
+    
+    for(i=0; i<N; i++) {
+        LInt new = malloc(sizeof(struct lligada));
+        new->valor = v[i];
+        new->prox = NULL;
+        
+        *result=new;
+        result=&((*result)->prox);
+    }
+    (*result)=NULL;
+    
+    return *head_result;
 }
 
 //24. -- 10 testes corretos
@@ -527,7 +550,23 @@ Posorder -> E D R
 */
 
 //31. -- 10 testes corretos
-void inorder (ABin a, LInt * l) {
+void inorder1 (ABin a, LInt *l){
+    if(a){
+         	
+        inorder(a->esq,l);
+
+        for(;*l;l = &((*l)->prox));
+
+        *l = malloc(sizeof(struct lligada)*1);
+        (*l)->valor = a->valor;
+        (*l)->prox = NULL;
+        
+        inorder(a->dir, l);
+        
+    }
+}
+
+void inorder2 (ABin a, LInt *l) {
     if (a) {
         LInt new = malloc(sizeof(struct nodo));
         new->valor = a->valor;
@@ -544,7 +583,7 @@ void inorder (ABin a, LInt * l) {
 }
 
 //32. -- 10 testes corretos
-void preorder (ABin a, LInt * l) {
+void preorder (ABin a, LInt *l) {
     if (a) {
         LInt new = malloc(sizeof(struct nodo));
         new->valor = a->valor;

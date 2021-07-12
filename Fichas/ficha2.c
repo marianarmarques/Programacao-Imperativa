@@ -122,8 +122,8 @@ int mdc3 (int a, int b, int *count){
 //6.a)
 int fib1 (int n){
 	if (n==0) return 0;
-	if (n<2) return 1;
+	if (n<=2) return 1;
 	return fib(n-1) + fib(n-2);
 }
 
-//6.b)------------------------------
+//6.b) ------------------------------

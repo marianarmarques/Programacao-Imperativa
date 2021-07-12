@@ -1,11 +1,11 @@
-#include <stdio.h.h>
+#include <stdio.h>
 
 typedef struct nodo {
 	int valor;
 	struct nodo *esq, *dir;
 } * ABin;
 
-//Ex_1
+/*Função auxiliar*/
 ABin newABin (int r, ABin e, ABin d) {
 	ABin a = malloc (sizeof(struct nodo));
 	if (a!=NULL) {
@@ -16,32 +16,31 @@ ABin newABin (int r, ABin e, ABin d) {
 	return a;
 }
 
+/*Ex1.*/
+//a.
 int altura (ABin a) {
-	int altEsq, altDir, r=0;
+	int altEsq, altDir;
 
-	if(a!=NULL) {
+	if(a) {
 		altEsq = altura(a->esq);
 		altDir = altura(a->dir);
-		if(altEsq>altDir) {
-			r = 1 + altEsq;
-		}
-		else r = 1 + altDir;
+		if(altEsq>altDir) return 1 + altEsq;
+		else return 1 + altDir;
 	}
-	return r;
+	else return 0;
 }
 
+//b.
 int nFolhas (ABin a){
-	int r=0;
 
-	if(a!=NULL){
-		if(a->esq==NULL && a->dir==NULL) r=1;
-		else{
-			r = nFolhas(a->esq) + nFolhas (a->dir);
-		}
+	if(a){
+		if(a->esq==NULL && a->dir==NULL) return 1;
+		else return nFolhas(a->esq) + nFolhas (a->dir);
 	}
-	return r;
+	else return 0;
 }
 
+//c.
 ABin maisEsquerda (ABin a){
 
 	if (a==NULL || a->esq==NULL) return a;
@@ -56,6 +55,7 @@ ABin maisEsquerda (ABin a){
 	*/
 }
 
+//d.
 void imprimeNivel(ABin a, int l){
 
 	if(l==0) printf("%d ", a->valor);
@@ -66,6 +66,7 @@ void imprimeNivel(ABin a, int l){
 	}
 }
 
+//e.
 int procuraE(ABin a, int x) {
 	int r=0;
 
@@ -78,9 +79,9 @@ int procuraE(ABin a, int x) {
 	return r;
 }
 
-//Ex_2
-/*Árvore binária de procura, todos os elementos à direita são maires
-que a respetiva raiz, vice-versa para os elementos da esquerda.*/
+/*Ex2.*/
+/* Árvore binária de procura, todos os elementos à direita são maires
+que a respetiva raiz, vice-versa para os elementos da esquerda. */
 struct nodo *procura (ABin a, int x){
 	ABin r = NULL;
 
